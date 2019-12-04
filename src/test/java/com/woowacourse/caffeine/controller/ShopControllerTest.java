@@ -29,23 +29,23 @@ public class ShopControllerTest {
 
         // when
         EntityExchangeResult<byte[]> response = webTestClient.post()
-                .uri(V1_SHOP)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(request), ShopCreateRequest.class)
-                .exchange()
-                .expectStatus().isCreated()
-                .expectHeader()
-                .valueMatches("Location", V1_SHOP + "/\\d*")
-                .expectBody().returnResult();
+            .uri(V1_SHOP)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(Mono.just(request), ShopCreateRequest.class)
+            .exchange()
+            .expectStatus().isCreated()
+            .expectHeader()
+            .valueMatches("Location", V1_SHOP + "/\\d*")
+            .expectBody().returnResult();
 
         // then
         webTestClient.get()
-                .uri(response.getResponseHeaders().getLocation().toASCIIString())
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .jsonPath("$.id").isNotEmpty()
-                .jsonPath("$.name").isEqualTo(name);
+            .uri(response.getResponseHeaders().getLocation().toASCIIString())
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody()
+            .jsonPath("$.id").isNotEmpty()
+            .jsonPath("$.name").isEqualTo(name);
     }
 
     @Test
@@ -53,10 +53,10 @@ public class ShopControllerTest {
     void menus_by_shop() {
         // when & then
         webTestClient.get()
-                .uri(String.format("%s/%d/menus", V1_SHOP, DEFAULT_SHOP_ID))
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .jsonPath("$").isArray();
+            .uri(String.format("%s/%d/menus", V1_SHOP, DEFAULT_SHOP_ID))
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody()
+            .jsonPath("$").isArray();
     }
 }

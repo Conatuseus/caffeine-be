@@ -33,7 +33,7 @@ public class ShopController {
         ShopResponse createdShop = shopService.createShop(request);
 
         return ResponseEntity.created(URI.create(V1_SHOP + "/" + createdShop.id))
-                .build();
+            .build();
     }
 
     @GetMapping("/{id}")
