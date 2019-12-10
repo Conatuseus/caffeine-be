@@ -1,6 +1,8 @@
 package com.woowacourse.caffeine.application.service;
 
+import com.woowacourse.caffeine.application.dto.MenuCreateRequest;
 import com.woowacourse.caffeine.application.dto.MenuItemResponse;
+import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
 import com.woowacourse.caffeine.domain.MenuItem;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,12 +27,31 @@ public class MenuItemService {
             .collect(Collectors.toList());
     }
 
+    public MenuItemResponse createMenuItem(final MenuCreateRequest menuCreateRequest) {
+        MenuItem menuItem = menuItemInternalService.createMenuItem(menuCreateRequest);
+        return convertToResponse(menuItem);
+    }
+
     private MenuItemResponse convertToResponse(final MenuItem menuItem) {
         return new MenuItemResponse(
             menuItem.getId(),
             menuItem.getName(),
+            menuItem.getNameInEnglish(),
             menuItem.getDescription(),
-            menuItem.getPrice()
+            menuItem.getPrice(),
+            menuItem.getImg(),
+            menuItem.getCategory(),
+            menuItem.getVendor()
         );
+    }
+
+    public MenuItemResponse findByMenuItemId(final long menuItemId) {
+        MenuItem menuItem = menuItemInternalService.findByMenuItemId(menuItemId);
+        return convertToResponse(menuItem);
+    }
+
+    public MenuItemResponse updateMenuItem(final long menuItemId, final MenuItemUpdateRequest menuItemUpdateRequest) {
+        MenuItem updatedMenuItem = menuItemInternalService.updateMenuItem(menuItemId, menuItemUpdateRequest);
+        return convertToResponse(updatedMenuItem);
     }
 }
