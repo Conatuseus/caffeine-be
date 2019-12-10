@@ -1,7 +1,7 @@
 package com.woowacourse.caffeine.application.service;
 
-import com.woowacourse.caffeine.application.exception.ShopNotFoundException;
 import com.woowacourse.caffeine.application.dto.ShopCreateRequest;
+import com.woowacourse.caffeine.application.exception.ShopNotFoundException;
 import com.woowacourse.caffeine.domain.Shop;
 import com.woowacourse.caffeine.repository.ShopRepository;
 import org.springframework.stereotype.Service;
