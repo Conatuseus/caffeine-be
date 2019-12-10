@@ -144,7 +144,7 @@ public class MenuControllerTest {
 
         // then
         webTestClient.get()
-            .uri(String.format("%s/%d",V1_MENU,DELETE_MENU_ID))
+            .uri(String.format("%s/%d", V1_MENU, DELETE_MENU_ID))
             .exchange()
             .expectStatus().is5xxServerError();
     }
