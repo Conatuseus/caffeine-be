@@ -38,8 +38,8 @@ public class ShopController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/{id}/menus")
-    public ResponseEntity retrieveMenus(@PathVariable final long id) {
-        return ResponseEntity.ok(menuItemService.findByShopId(id));
+    @GetMapping("/{shopId}//menus")
+    public ResponseEntity retrieveMenus(@PathVariable final long shopId) {
+        return ResponseEntity.ok(menuItemService.findByShopId(shopId));
     }
 }
