@@ -1,11 +1,16 @@
 package com.woowacourse.caffeine.controller;
 
-import com.woowacourse.caffeine.application.service.MenuItemService;
-import com.woowacourse.caffeine.application.service.ShopService;
 import com.woowacourse.caffeine.application.dto.ShopCreateRequest;
 import com.woowacourse.caffeine.application.dto.ShopResponse;
+import com.woowacourse.caffeine.application.service.MenuItemService;
+import com.woowacourse.caffeine.application.service.ShopService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 
