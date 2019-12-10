@@ -22,6 +22,7 @@ public class MenuControllerTest {
     private static final long DEFAULT_SHOP_ID = 100L;
     private static final long DEFAULT_MENU_ID = 987654321L;
     private static final long UPDATE_MENU_ID = 987654322L;
+    private static final long DELETE_MENU_ID = 987654323L;
 
     @Autowired
     private WebTestClient webTestClient;
@@ -85,9 +86,14 @@ public class MenuControllerTest {
     void update_menu_item() {
         //given
         String updatedName = "아이스 고구마라떼";
+        String updatedMenuNameInEnglish = "Americano";
         String updatedDescription = "시원한 고구마라떼";
+        String updatedImg = "abc";
         int updatedPrice = 4000;
-        MenuItemUpdateRequest menuUpdateRequest = new MenuItemUpdateRequest(updatedName, updatedDescription, updatedPrice);
+        String updatedCategory = "coffee";
+
+        MenuItemUpdateRequest menuUpdateRequest = new MenuItemUpdateRequest(
+            updatedName, updatedMenuNameInEnglish, updatedDescription, updatedPrice, updatedImg, updatedCategory);
 
         // when
         webTestClient.get()
@@ -106,8 +112,11 @@ public class MenuControllerTest {
             .expectStatus().isOk()
             .expectBody()
             .jsonPath("$.name").isEqualTo(updatedName)
+            .jsonPath("$.nameInEnglish").isEqualTo(updatedMenuNameInEnglish)
             .jsonPath("$.description").isEqualTo(updatedDescription)
-            .jsonPath("$.price").isEqualTo(updatedPrice);
+            .jsonPath("$.img").isEqualTo("abc")
+            .jsonPath("$.price").isEqualTo(updatedPrice)
+            .jsonPath("$.category").isEqualTo("coffee");
 
         // then
         webTestClient.get()
@@ -116,23 +125,28 @@ public class MenuControllerTest {
             .expectStatus().isOk()
             .expectBody()
             .jsonPath("$.name").isEqualTo(updatedName)
+            .jsonPath("$.nameInEnglish").isEqualTo(updatedMenuNameInEnglish)
             .jsonPath("$.description").isEqualTo(updatedDescription)
-            .jsonPath("$.price").isEqualTo(updatedPrice);
-
+            .jsonPath("$.img").isEqualTo("abc")
+            .jsonPath("$.price").isEqualTo(updatedPrice)
+            .jsonPath("$.category").isEqualTo("coffee");
     }
 
-//    @Test
-//    @DisplayName("메뉴 삭제")
-//    void delete_menu() {
-//        // given
-//        long menuItemId = 987654322L;
-//
-//        // when
-//        webTestClient.delete()
-//            .uri(String.format("%s/%d", V1_MENU, menuItemId))
-//
-//
-//        // then
-//    }
+    @Test
+    @DisplayName("메뉴 삭제")
+    void delete_menu() {
+
+        // when
+        webTestClient.delete()
+            .uri(String.format("%s/%d", V1_MENU, DELETE_MENU_ID))
+            .exchange()
+            .expectStatus().isNoContent();
+
+        // then
+        webTestClient.get()
+            .uri(String.format("%s/%d",V1_MENU,DELETE_MENU_ID))
+            .exchange()
+            .expectStatus().is5xxServerError();
+    }
 
 }
