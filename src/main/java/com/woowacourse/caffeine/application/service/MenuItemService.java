@@ -32,6 +32,16 @@ public class MenuItemService {
         return convertToResponse(menuItem);
     }
 
+    public MenuItemResponse findByMenuItemId(final long menuItemId) {
+        MenuItem menuItem = menuItemInternalService.findByMenuItemId(menuItemId);
+        return convertToResponse(menuItem);
+    }
+
+    public MenuItemResponse updateMenuItem(final long menuItemId, final MenuItemUpdateRequest menuItemUpdateRequest) {
+        MenuItem updatedMenuItem = menuItemInternalService.updateMenuItem(menuItemId, menuItemUpdateRequest);
+        return convertToResponse(updatedMenuItem);
+    }
+
     private MenuItemResponse convertToResponse(final MenuItem menuItem) {
         return new MenuItemResponse(
             menuItem.getId(),
@@ -43,15 +53,5 @@ public class MenuItemService {
             menuItem.getCategory(),
             menuItem.getVendor()
         );
-    }
-
-    public MenuItemResponse findByMenuItemId(final long menuItemId) {
-        MenuItem menuItem = menuItemInternalService.findByMenuItemId(menuItemId);
-        return convertToResponse(menuItem);
-    }
-
-    public MenuItemResponse updateMenuItem(final long menuItemId, final MenuItemUpdateRequest menuItemUpdateRequest) {
-        MenuItem updatedMenuItem = menuItemInternalService.updateMenuItem(menuItemId, menuItemUpdateRequest);
-        return convertToResponse(updatedMenuItem);
     }
 }
