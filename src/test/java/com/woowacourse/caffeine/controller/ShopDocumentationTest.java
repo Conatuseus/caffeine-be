@@ -1,10 +1,10 @@
 package com.woowacourse.caffeine.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.woowacourse.caffeine.application.service.MenuItemService;
-import com.woowacourse.caffeine.application.service.ShopService;
 import com.woowacourse.caffeine.application.dto.ShopCreateRequest;
 import com.woowacourse.caffeine.application.dto.ShopResponse;
+import com.woowacourse.caffeine.application.service.MenuItemService;
+import com.woowacourse.caffeine.application.service.ShopService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,9 @@ import static com.woowacourse.caffeine.utils.ApiDocumentUtils.getDocumentRespons
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
