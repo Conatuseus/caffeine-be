@@ -27,7 +27,7 @@ public class OrderTest {
 
         //then
         Order order = orders.get(0);
-        
+
         assertThat(order.getCreatedDate()).isAfter(now);
         assertThat(order.getModifiedDate()).isAfter(now);
     }
