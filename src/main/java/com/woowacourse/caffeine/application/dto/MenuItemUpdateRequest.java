@@ -3,16 +3,22 @@ package com.woowacourse.caffeine.application.dto;
 public class MenuItemUpdateRequest {
 
     private String name;
+    private String nameInEnglish;
     private String description;
     private int price;
+    private String img;
+    private String category;
 
     public MenuItemUpdateRequest() {
     }
 
-    public MenuItemUpdateRequest(final String name, final String description, final int price) {
+    public MenuItemUpdateRequest(final String name, final String nameInEnglish, final String description, final int price, final String img, final String category) {
         this.name = name;
+        this.nameInEnglish = nameInEnglish;
         this.description = description;
         this.price = price;
+        this.img = img;
+        this.category = category;
     }
 
     public String getName() {
@@ -21,6 +27,14 @@ public class MenuItemUpdateRequest {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getNameInEnglish() {
+        return nameInEnglish;
+    }
+
+    public void setNameInEnglish(final String nameInEnglish) {
+        this.nameInEnglish = nameInEnglish;
     }
 
     public String getDescription() {
@@ -37,5 +51,21 @@ public class MenuItemUpdateRequest {
 
     public void setPrice(final int price) {
         this.price = price;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(final String img) {
+        this.img = img;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(final String category) {
+        this.category = category;
     }
 }
