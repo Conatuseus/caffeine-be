@@ -50,9 +50,13 @@ public class MenuItemInternalService {
 
     public MenuItem updateMenuItem(final long menuItemId, final MenuItemUpdateRequest menuItemUpdateRequest) {
         MenuItem updatedMenuItem = menuItemRepository.findById(menuItemId)
-            .orElseThrow(()->new MenuItemNotFoundException(menuItemId));
+            .orElseThrow(() -> new MenuItemNotFoundException(menuItemId));
 
         updatedMenuItem.update(menuItemUpdateRequest);
         return updatedMenuItem;
+    }
+
+    public void deleteMenuItem(final long menuItemId) {
+        menuItemRepository.deleteById(menuItemId);
     }
 }

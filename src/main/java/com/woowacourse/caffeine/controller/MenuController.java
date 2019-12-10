@@ -5,6 +5,7 @@ import com.woowacourse.caffeine.application.dto.MenuItemResponse;
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
 import com.woowacourse.caffeine.application.service.MenuItemService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,21 +28,27 @@ public class MenuController {
     }
 
     @PostMapping
-    public ResponseEntity createMenu(@RequestBody MenuCreateRequest menuCreateRequest) {
+    public ResponseEntity createMenuItem(@RequestBody MenuCreateRequest menuCreateRequest) {
         MenuItemResponse menuItemResponse = menuItemService.createMenuItem(menuCreateRequest);
         return ResponseEntity.created(URI.create(V1_MENU + "/" + menuItemResponse.getId()))
             .build();
     }
 
     @GetMapping("/{menuItemId}")
-    public ResponseEntity findMenu(@PathVariable final long menuItemId) {
+    public ResponseEntity findMenuItem(@PathVariable final long menuItemId) {
         MenuItemResponse menuItemResponse = menuItemService.findByMenuItemId(menuItemId);
         return ResponseEntity.ok(menuItemResponse);
     }
 
     @PutMapping("/{menuItemId}")
-    public ResponseEntity updateMenu(@PathVariable final long menuItemId, @RequestBody MenuItemUpdateRequest menuItemUpdateRequest) {
+    public ResponseEntity updateMenuItem(@PathVariable final long menuItemId, @RequestBody MenuItemUpdateRequest menuItemUpdateRequest) {
         MenuItemResponse menuItemResponse = menuItemService.updateMenuItem(menuItemId, menuItemUpdateRequest);
         return ResponseEntity.ok(menuItemResponse);
+    }
+
+    @DeleteMapping("/{menuItemId}")
+    public ResponseEntity deleteMenuItem(@PathVariable final long menuItemId) {
+        menuItemService.deleteMenuItem(menuItemId);
+        return ResponseEntity.noContent().build();
     }
 }

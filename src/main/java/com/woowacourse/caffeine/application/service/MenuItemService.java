@@ -42,6 +42,10 @@ public class MenuItemService {
         return convertToResponse(updatedMenuItem);
     }
 
+    public void deleteMenuItem(final long menuItemId) {
+        menuItemInternalService.deleteMenuItem(menuItemId);
+    }
+
     private MenuItemResponse convertToResponse(final MenuItem menuItem) {
         return new MenuItemResponse(
             menuItem.getId(),
