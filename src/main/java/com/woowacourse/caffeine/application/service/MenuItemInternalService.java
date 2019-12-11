@@ -35,7 +35,7 @@ public class MenuItemInternalService {
             .nameInEnglish(menuCreateRequest.getNameInEnglish())
             .description(menuCreateRequest.getDescription())
             .price(menuCreateRequest.getPrice())
-            .img(menuCreateRequest.getImg())
+            .imgUrl(menuCreateRequest.getImgUrl())
             .category(menuCreateRequest.getCategory())
             .vendor(vendor)
             .build();

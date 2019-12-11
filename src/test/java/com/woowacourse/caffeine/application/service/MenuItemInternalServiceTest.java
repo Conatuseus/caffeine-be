@@ -44,7 +44,7 @@ class MenuItemInternalServiceTest {
             .nameInEnglish("Ice Americano")
             .description("시원한 아메리카노")
             .price(2000)
-            .img("abc")
+            .imgUrl("abc")
             .category("coffee")
             .vendor(shop)
             .build();
@@ -58,7 +58,7 @@ class MenuItemInternalServiceTest {
             .nameInEnglish("Americano")
             .description("맛있는 아메리카노")
             .price(2500)
-            .img("https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_banana.jpeg?raw=true")
+            .imgUrl("https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_banana.jpeg?raw=true")
             .category("coffee")
             .vendor(shop)
             .build();
@@ -68,7 +68,7 @@ class MenuItemInternalServiceTest {
             .nameInEnglish("cafe latte")
             .description("고소한 라떼")
             .price(3000)
-            .img("https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_banana.jpeg?raw=true")
+            .imgUrl("https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_banana.jpeg?raw=true")
             .category("coffee")
             .vendor(shop)
             .build();

@@ -55,7 +55,7 @@ public class MenuItemService {
             menuItem.getNameInEnglish(),
             menuItem.getDescription(),
             menuItem.getPrice(),
-            menuItem.getImg(),
+            menuItem.getImgUrl(),
             menuItem.getCategory(),
             menuItem.getVendor()
         );

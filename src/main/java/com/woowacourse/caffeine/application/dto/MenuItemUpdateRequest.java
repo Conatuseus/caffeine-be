@@ -6,18 +6,18 @@ public class MenuItemUpdateRequest {
     private String nameInEnglish;
     private String description;
     private int price;
-    private String img;
+    private String imgUrl;
     private String category;
 
     public MenuItemUpdateRequest() {
     }
 
-    public MenuItemUpdateRequest(final String name, final String nameInEnglish, final String description, final int price, final String img, final String category) {
+    public MenuItemUpdateRequest(final String name, final String nameInEnglish, final String description, final int price, final String imgUrl, final String category) {
         this.name = name;
         this.nameInEnglish = nameInEnglish;
         this.description = description;
         this.price = price;
-        this.img = img;
+        this.imgUrl = imgUrl;
         this.category = category;
     }
 
@@ -53,12 +53,12 @@ public class MenuItemUpdateRequest {
         this.price = price;
     }
 
-    public String getImg() {
-        return img;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg(final String img) {
-        this.img = img;
+    public void setImgUrl(final String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getCategory() {

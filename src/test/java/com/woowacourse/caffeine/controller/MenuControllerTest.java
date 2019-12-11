@@ -35,10 +35,10 @@ public class MenuControllerTest {
         String menuNameInEnglish = "Americano";
         String description = "맛있는 아메리카노";
         int price = 3000;
-        String img = "abc";
+        String imgUrl = "abc";
         String category = "coffee";
 
-        MenuCreateRequest menuCreateRequest = new MenuCreateRequest(menuName, menuNameInEnglish, description, price, img, category, DEFAULT_SHOP_ID);
+        MenuCreateRequest menuCreateRequest = new MenuCreateRequest(menuName, menuNameInEnglish, description, price, imgUrl, category, DEFAULT_SHOP_ID);
 
         // when
         EntityExchangeResult<byte[]> response = webTestClient.post()
@@ -114,7 +114,7 @@ public class MenuControllerTest {
             .jsonPath("$.name").isEqualTo(updatedName)
             .jsonPath("$.nameInEnglish").isEqualTo(updatedMenuNameInEnglish)
             .jsonPath("$.description").isEqualTo(updatedDescription)
-            .jsonPath("$.img").isEqualTo("abc")
+            .jsonPath("$.imgUrl").isEqualTo("abc")
             .jsonPath("$.price").isEqualTo(updatedPrice)
             .jsonPath("$.category").isEqualTo("coffee");
 
@@ -127,7 +127,7 @@ public class MenuControllerTest {
             .jsonPath("$.name").isEqualTo(updatedName)
             .jsonPath("$.nameInEnglish").isEqualTo(updatedMenuNameInEnglish)
             .jsonPath("$.description").isEqualTo(updatedDescription)
-            .jsonPath("$.img").isEqualTo("abc")
+            .jsonPath("$.imgUrl").isEqualTo("abc")
             .jsonPath("$.price").isEqualTo(updatedPrice)
             .jsonPath("$.category").isEqualTo("coffee");
     }

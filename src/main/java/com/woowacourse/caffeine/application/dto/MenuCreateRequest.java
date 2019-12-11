@@ -6,19 +6,19 @@ public class MenuCreateRequest {
     private String nameInEnglish;
     private String description;
     private int price;
-    private String img;
+    private String imgUrl;
     private String category;
     private long vendor;
 
     public MenuCreateRequest() {
     }
 
-    public MenuCreateRequest(final String name, final String nameInEnglish, final String description, final int price, final String img, final String category, final long vendor) {
+    public MenuCreateRequest(final String name, final String nameInEnglish, final String description, final int price, final String imgUrl, final String category, final long vendor) {
         this.name = name;
         this.nameInEnglish = nameInEnglish;
         this.description = description;
         this.price = price;
-        this.img = img;
+        this.imgUrl = imgUrl;
         this.category = category;
         this.vendor = vendor;
     }
@@ -55,12 +55,12 @@ public class MenuCreateRequest {
         this.price = price;
     }
 
-    public String getImg() {
-        return img;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg(final String img) {
-        this.img = img;
+    public void setImgUrl(final String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getCategory() {

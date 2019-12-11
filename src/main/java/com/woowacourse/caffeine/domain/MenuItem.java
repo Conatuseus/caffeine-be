@@ -4,9 +4,7 @@ import com.woowacourse.caffeine.domain.exception.InvalidMenuItemNameException;
 import com.woowacourse.caffeine.domain.exception.InvalidMenuItemPriceException;
 
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
-import com.woowacourse.caffeine.domain.exception.InvalidMenuItemNameException;
 import com.woowacourse.caffeine.domain.exception.InvalidMenuItemNameInEnglishException;
-import com.woowacourse.caffeine.domain.exception.InvalidMenuItemPriceException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,7 +40,7 @@ public class MenuItem {
 
     private int price;
 
-    private String img;
+    private String imgUrl;
 
     private String category;
 
@@ -54,14 +52,14 @@ public class MenuItem {
     }
 
     @Builder
-    public MenuItem(final String name, final String nameInEnglish, final String description, final int price, final String img, final String category, final Shop vendor) {
+    public MenuItem(final String name, final String nameInEnglish, final String description, final int price, final String imgUrl, final String category, final Shop vendor) {
         checkValidation(name, nameInEnglish, price);
 
         this.name = name;
         this.nameInEnglish = nameInEnglish;
         this.description = description;
         this.price = price;
-        this.img = img;
+        this.imgUrl = imgUrl;
         this.category = category;
         this.vendor = vendor;
     }
@@ -73,7 +71,7 @@ public class MenuItem {
         this.nameInEnglish = menuItemUpdateRequest.getNameInEnglish();
         this.description = menuItemUpdateRequest.getDescription();
         this.price = menuItemUpdateRequest.getPrice();
-        this.img = menuItemUpdateRequest.getImg();
+        this.imgUrl = menuItemUpdateRequest.getImgUrl();
         this.category = menuItemUpdateRequest.getCategory();
     }
 
