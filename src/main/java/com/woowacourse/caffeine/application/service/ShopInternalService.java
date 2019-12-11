@@ -7,6 +7,8 @@ import com.woowacourse.caffeine.repository.ShopRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 class ShopInternalService {
@@ -17,12 +19,16 @@ class ShopInternalService {
         this.shopRepository = shopRepository;
     }
 
-    public Shop createShop(final ShopCreateRequest request) {
-        return shopRepository.save(new Shop(request.getName()));
+    public Shop createShop(final ShopCreateRequest shopCreateRequest) {
+        return shopRepository.save(Shop.create(shopCreateRequest));
     }
 
-    public Shop findById(final long id) {
+    public Shop findById(final Long id) {
         return shopRepository.findById(id)
             .orElseThrow(() -> new ShopNotFoundException(id));
+    }
+
+    public List<Shop> findAll() {
+        return shopRepository.findAll();
     }
 }

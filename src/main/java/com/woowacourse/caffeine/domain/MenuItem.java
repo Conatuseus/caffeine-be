@@ -1,5 +1,8 @@
 package com.woowacourse.caffeine.domain;
 
+import com.woowacourse.caffeine.domain.exception.InvalidMenuItemNameException;
+import com.woowacourse.caffeine.domain.exception.InvalidMenuItemPriceException;
+
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
 import com.woowacourse.caffeine.domain.exception.InvalidMenuItemNameException;
 import com.woowacourse.caffeine.domain.exception.InvalidMenuItemNameInEnglishException;
