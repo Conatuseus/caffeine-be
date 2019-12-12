@@ -7,7 +7,7 @@ public class MenuItemResponse {
     private final String nameInEnglish;
     private final String description;
     private final int price;
-    private final String imgUrl;
+    private final String image;
     private final String category;
     private final ShopResponse vendor;
 
@@ -17,7 +17,7 @@ public class MenuItemResponse {
         this.nameInEnglish = nameInEnglish;
         this.description = description;
         this.price = price;
-        this.imgUrl = imgUrl;
+        this.image = image;
         this.category = category;
         this.vendor = vendor;
     }
@@ -42,8 +42,8 @@ public class MenuItemResponse {
         return price;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImage() {
+        return image;
     }
 
     public String getCategory() {
