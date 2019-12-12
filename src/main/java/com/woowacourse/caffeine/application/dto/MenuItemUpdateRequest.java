@@ -1,5 +1,7 @@
 package com.woowacourse.caffeine.application.dto;
 
+import java.util.Objects;
+
 public class MenuItemUpdateRequest {
 
     private String name;
@@ -67,5 +69,23 @@ public class MenuItemUpdateRequest {
 
     public void setCategory(final String category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final MenuItemUpdateRequest that = (MenuItemUpdateRequest) o;
+        return price == that.price &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(nameInEnglish, that.nameInEnglish) &&
+            Objects.equals(description, that.description) &&
+            Objects.equals(imgUrl, that.imgUrl) &&
+            Objects.equals(category, that.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, nameInEnglish, description, price, imgUrl, category);
     }
 }
