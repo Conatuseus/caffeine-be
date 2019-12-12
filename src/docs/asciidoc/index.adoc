@@ -131,3 +131,118 @@ include::{snippets}/shop-list/http-response.adoc[]
 Response Body Example:
 
 include::{snippets}/shop-list/response-body.adoc[]
+
+
+== menuItem-create API
+=== Request
+
+CURL:
+
+include::{snippets}/menuItem-create/curl-request.adoc[]
+
+Request HTTP Example:
+
+include::{snippets}/menuItem-create/http-request.adoc[]
+
+Request Body Example:
+
+include::{snippets}/menuItem-create/request-body.adoc[]
+
+=== Response
+
+Response HTTP Example:
+
+include::{snippets}/menuItem-create/http-response.adoc[]
+
+Response Body Example:
+
+include::{snippets}/menuItem-create/response-body.adoc[]
+
+
+== menuItem-retrieve API
+
+=== Request
+
+CURL:
+
+include::{snippets}/menuItem-retrieve/curl-request.adoc[]
+
+Request HTTP Example:
+
+include::{snippets}/menuItem-retrieve/http-request.adoc[]
+
+Request Path Variable Example:
+
+include::{snippets}/menuItem-retrieve/path-parameters.adoc[]
+
+Request Body Example:
+
+include::{snippets}/menuItem-retrieve/request-body.adoc[]
+
+=== Response
+
+Response HTTP Example:
+
+include::{snippets}/menuItem-retrieve/http-response.adoc[]
+
+Response Body Example:
+
+include::{snippets}/menuItem-retrieve/response-body.adoc[]
+
+
+== menuItem-update API
+
+=== request
+
+CURL:
+
+include::{snippets}/menuItem-update/curl-request.adoc[]
+
+Request HTTP Example:
+
+include::{snippets}/menuItem-update/http-request.adoc[]
+
+Request Path Variable Example:
+
+include::{snippets}/menuItem-update/path-parameters.adoc[]
+
+Request Body Example:
+
+include::{snippets}/menuItem-update/request-body.adoc[]
+
+=== Response
+
+Response HTTP Example:
+
+include::{snippets}/menuItem-update/http-response.adoc[]
+
+Response Body Example:
+
+include::{snippets}/menuItem-update/response-body.adoc[]
+
+
+== menuItem-delete API
+
+=== request
+
+CURL:
+
+include::{snippets}/menuItem-delete/curl-request.adoc[]
+
+Request HTTP Example:
+
+include::{snippets}/menuItem-delete/http-request.adoc[]
+
+Request Body Example:
+
+include::{snippets}/menuItem-delete/request-body.adoc[]
+
+=== Response
+
+Response HTTP Example:
+
+include::{snippets}/menuItem-delete/http-response.adoc[]
+
+Response Body Example:
+
+include::{snippets}/menuItem-delete/response-body.adoc[]
