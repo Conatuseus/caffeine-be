@@ -1,6 +1,6 @@
 package com.woowacourse.caffeine.application.service;
 
-import com.woowacourse.caffeine.application.dto.MenuCreateRequest;
+import com.woowacourse.caffeine.application.dto.MenuItemCreateRequest;
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
 import com.woowacourse.caffeine.domain.MenuItem;
 import com.woowacourse.caffeine.domain.Shop;
@@ -87,12 +87,12 @@ class MenuItemInternalServiceTest {
     void createMenuItem() {
         //given
         long shopId = 1L;
-        MenuCreateRequest menuCreateRequest = new MenuCreateRequest(
+        MenuItemCreateRequest menuItemCreateRequest = new MenuItemCreateRequest(
             "아이스 아메리카노", "Ice Americano", "시원한 아메리카노", 2000, "abc", "coffee", shopId);
 
         //when
         when(menuItemRepository.save(any())).thenReturn(menuItem);
-        MenuItem created = menuItemInternalService.createMenuItem(menuCreateRequest);
+        MenuItem created = menuItemInternalService.createMenuItem(menuItemCreateRequest);
 
         //then
         assertThat(menuItem).isEqualTo(created);

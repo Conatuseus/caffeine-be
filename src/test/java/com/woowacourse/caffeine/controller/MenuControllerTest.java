@@ -1,6 +1,6 @@
 package com.woowacourse.caffeine.controller;
 
-import com.woowacourse.caffeine.application.dto.MenuCreateRequest;
+import com.woowacourse.caffeine.application.dto.MenuItemCreateRequest;
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,13 +38,13 @@ public class MenuControllerTest {
         String imgUrl = "abc";
         String category = "coffee";
 
-        MenuCreateRequest menuCreateRequest = new MenuCreateRequest(menuName, menuNameInEnglish, description, price, imgUrl, category, DEFAULT_SHOP_ID);
+        MenuItemCreateRequest menuItemCreateRequest = new MenuItemCreateRequest(menuName, menuNameInEnglish, description, price, imgUrl, category, DEFAULT_SHOP_ID);
 
         // when
         EntityExchangeResult<byte[]> response = webTestClient.post()
             .uri(V1_MENU)
             .contentType(MediaType.APPLICATION_JSON)
-            .body(Mono.just(menuCreateRequest), MenuCreateRequest.class).exchange()
+            .body(Mono.just(menuItemCreateRequest), MenuItemCreateRequest.class).exchange()
             .expectStatus().isCreated()
             .expectHeader().valueMatches("Location", V1_MENU + "/\\d*")
             .expectBody().returnResult();

@@ -1,6 +1,6 @@
 package com.woowacourse.caffeine.controller;
 
-import com.woowacourse.caffeine.application.dto.MenuCreateRequest;
+import com.woowacourse.caffeine.application.dto.MenuItemCreateRequest;
 import com.woowacourse.caffeine.application.dto.MenuItemResponse;
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
 import com.woowacourse.caffeine.application.service.MenuItemService;
@@ -28,8 +28,8 @@ public class MenuController {
     }
 
     @PostMapping
-    public ResponseEntity createMenuItem(@RequestBody MenuCreateRequest menuCreateRequest) {
-        MenuItemResponse menuItemResponse = menuItemService.createMenuItem(menuCreateRequest);
+    public ResponseEntity createMenuItem(@RequestBody MenuItemCreateRequest menuItemCreateRequest) {
+        MenuItemResponse menuItemResponse = menuItemService.createMenuItem(menuItemCreateRequest);
         return ResponseEntity.created(URI.create(V1_MENU + "/" + menuItemResponse.getId()))
             .build();
     }

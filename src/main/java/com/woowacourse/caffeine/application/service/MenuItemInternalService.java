@@ -1,6 +1,6 @@
 package com.woowacourse.caffeine.application.service;
 
-import com.woowacourse.caffeine.application.dto.MenuCreateRequest;
+import com.woowacourse.caffeine.application.dto.MenuItemCreateRequest;
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
 import com.woowacourse.caffeine.application.exception.MenuItemNotFoundException;
 import com.woowacourse.caffeine.domain.MenuItem;
@@ -28,15 +28,15 @@ public class MenuItemInternalService {
         return menuItemRepository.findByVendor(vendor);
     }
 
-    public MenuItem createMenuItem(final MenuCreateRequest menuCreateRequest) {
-        Shop vendor = shopInternalService.findById(menuCreateRequest.getVendor());
+    public MenuItem createMenuItem(final MenuItemCreateRequest menuItemCreateRequest) {
+        Shop vendor = shopInternalService.findById(menuItemCreateRequest.getVendor());
         MenuItem menuItem = MenuItem.builder()
-            .name(menuCreateRequest.getName())
-            .nameInEnglish(menuCreateRequest.getNameInEnglish())
-            .description(menuCreateRequest.getDescription())
-            .price(menuCreateRequest.getPrice())
-            .imgUrl(menuCreateRequest.getImgUrl())
-            .category(menuCreateRequest.getCategory())
+            .name(menuItemCreateRequest.getName())
+            .nameInEnglish(menuItemCreateRequest.getNameInEnglish())
+            .description(menuItemCreateRequest.getDescription())
+            .price(menuItemCreateRequest.getPrice())
+            .imgUrl(menuItemCreateRequest.getImgUrl())
+            .category(menuItemCreateRequest.getCategory())
             .vendor(vendor)
             .build();
 
