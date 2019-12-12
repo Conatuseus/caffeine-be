@@ -11,7 +11,7 @@ public class MenuItemResponse {
     private final String category;
     private final ShopResponse vendor;
 
-    public MenuItemResponse(final long id, final String name, final String nameInEnglish, final String description, final int price, final String imgUrl, final String category, final ShopResponse vendor) {
+    public MenuItemResponse(final long id, final String name, final String nameInEnglish, final String description, final int price, final String image, final String category, final ShopResponse vendor) {
         this.id = id;
         this.name = name;
         this.nameInEnglish = nameInEnglish;
