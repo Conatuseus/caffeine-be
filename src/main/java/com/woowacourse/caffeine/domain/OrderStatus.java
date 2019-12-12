@@ -1,9 +1,13 @@
 package com.woowacourse.caffeine.domain;
 
 public enum OrderStatus {
-
     PENDING,
     IN_PROGRESS,
-    FINISHED
+    REJECTED,
+    FINISHED;
+
+    public static OrderStatus from(String name) {
+        return valueOf(name.toUpperCase());
+    }
 }
 
