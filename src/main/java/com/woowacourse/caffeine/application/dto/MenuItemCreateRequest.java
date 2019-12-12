@@ -1,6 +1,8 @@
 package com.woowacourse.caffeine.application.dto;
 
-public class MenuCreateRequest {
+import java.util.Objects;
+
+public class MenuItemCreateRequest {
 
     private String name;
     private String nameInEnglish;
@@ -10,10 +12,10 @@ public class MenuCreateRequest {
     private String category;
     private long vendor;
 
-    public MenuCreateRequest() {
+    public MenuItemCreateRequest() {
     }
 
-    public MenuCreateRequest(final String name, final String nameInEnglish, final String description, final int price, final String imgUrl, final String category, final long vendor) {
+    public MenuItemCreateRequest(final String name, final String nameInEnglish, final String description, final int price, final String imgUrl, final String category, final long vendor) {
         this.name = name;
         this.nameInEnglish = nameInEnglish;
         this.description = description;
@@ -77,5 +79,24 @@ public class MenuCreateRequest {
 
     public void setVendor(final long vendor) {
         this.vendor = vendor;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final MenuItemCreateRequest that = (MenuItemCreateRequest) o;
+        return price == that.price &&
+            vendor == that.vendor &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(nameInEnglish, that.nameInEnglish) &&
+            Objects.equals(description, that.description) &&
+            Objects.equals(imgUrl, that.imgUrl) &&
+            Objects.equals(category, that.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, nameInEnglish, description, price, imgUrl, category, vendor);
     }
 }
