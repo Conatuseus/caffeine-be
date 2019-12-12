@@ -1,8 +1,10 @@
 package com.woowacourse.caffeine.application.service;
 
-import com.woowacourse.caffeine.application.dto.MenuCreateRequest;
+import com.woowacourse.caffeine.application.converter.ShopConverter;
+import com.woowacourse.caffeine.application.dto.MenuItemCreateRequest;
 import com.woowacourse.caffeine.application.dto.MenuItemResponse;
 import com.woowacourse.caffeine.application.dto.MenuItemUpdateRequest;
+import com.woowacourse.caffeine.application.dto.ShopResponse;
 import com.woowacourse.caffeine.domain.MenuItem;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +17,11 @@ import java.util.stream.Collectors;
 public class MenuItemService {
 
     private final MenuItemInternalService menuItemInternalService;
+    private final ShopConverter shopConverter;
 
-    public MenuItemService(final MenuItemInternalService menuItemInternalService) {
+    public MenuItemService(final MenuItemInternalService menuItemInternalService, final ShopConverter shopConverter) {
         this.menuItemInternalService = menuItemInternalService;
+        this.shopConverter = shopConverter;
     }
 
     @Transactional(readOnly = true)
@@ -28,8 +32,8 @@ public class MenuItemService {
             .collect(Collectors.toList());
     }
 
-    public MenuItemResponse createMenuItem(final MenuCreateRequest menuCreateRequest) {
-        MenuItem menuItem = menuItemInternalService.createMenuItem(menuCreateRequest);
+    public MenuItemResponse createMenuItem(final MenuItemCreateRequest menuItemCreateRequest) {
+        MenuItem menuItem = menuItemInternalService.createMenuItem(menuItemCreateRequest);
         return convertToResponse(menuItem);
     }
 
@@ -57,7 +61,7 @@ public class MenuItemService {
             menuItem.getPrice(),
             menuItem.getImgUrl(),
             menuItem.getCategory(),
-            menuItem.getVendor()
+            shopConverter.convertToDto(menuItem.getVendor(), ShopResponse.class)
         );
     }
 }
