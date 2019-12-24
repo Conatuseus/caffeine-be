@@ -6,7 +6,7 @@ public class PaymentSaveRequest {
     private String customerId;
     private Long orderId;
 
-    public PaymentSaveRequest(){
+    public PaymentSaveRequest() {
     }
 
     public PaymentSaveRequest(final int amount, final String customerId, final Long orderId) {

@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
@@ -18,6 +19,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 
+@Transactional
 @Service
 public class KakaoPayService {
 
@@ -66,6 +68,7 @@ public class KakaoPayService {
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<>(params, headers);
         try {
             kakaoPayReadyVO = restTemplate.postForObject(URI.create(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
+
             return Objects.requireNonNull(kakaoPayReadyVO).getNext_redirect_pc_url();
         } catch (RestClientException e) {
             // TODO Auto-generated catch block

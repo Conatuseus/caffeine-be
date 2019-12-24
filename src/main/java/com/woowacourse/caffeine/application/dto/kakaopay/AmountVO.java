@@ -8,7 +8,7 @@ public class AmountVO {
     private int point;
     private int discount;
 
-    public AmountVO(){
+    public AmountVO() {
     }
 
     public AmountVO(final int total, final int tax_free, final int vat, final int point, final int discount) {

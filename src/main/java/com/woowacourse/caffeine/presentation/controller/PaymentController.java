@@ -28,7 +28,7 @@ public class PaymentController {
     }
 
     @PostMapping("/{orderId}/kakaopay")
-    public ResponseEntity<String> kakaoPayStart(@PathVariable final Long orderId) {
+    public ResponseEntity kakaoPayStart(@PathVariable final Long orderId) {
         return new ResponseEntity<>(kakaoPayService.ready(orderId), HttpStatus.FOUND);
     }
 

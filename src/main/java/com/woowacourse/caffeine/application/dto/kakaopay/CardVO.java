@@ -18,9 +18,9 @@ public class CardVO {
     }
 
     public CardVO(final String purchase_corp, final String purchase_corp_code, final String issuer_corp,
-                final String issuer_corp_code, final String bin, final String card_type,
-                final String install_month, final String approved_id, final String card_mid,
-                final String interest_free_install, final String card_item_code) {
+                  final String issuer_corp_code, final String bin, final String card_type,
+                  final String install_month, final String approved_id, final String card_mid,
+                  final String interest_free_install, final String card_item_code) {
         this.purchase_corp = purchase_corp;
         this.purchase_corp_code = purchase_corp_code;
         this.issuer_corp = issuer_corp;
