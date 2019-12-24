@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 
 public class KakaoPayApprovalVO {
 
-    //response
     private String aid;
     private String tid;
     private String cid;
