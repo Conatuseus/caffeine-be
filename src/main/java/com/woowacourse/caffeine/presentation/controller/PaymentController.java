@@ -1,6 +1,7 @@
 package com.woowacourse.caffeine.presentation.controller;
 
 import com.woowacourse.caffeine.application.dto.PaymentResponse;
+import com.woowacourse.caffeine.application.dto.kakaopay.KakaoPayReadyRequest;
 import com.woowacourse.caffeine.application.service.KakaoPayService;
 import com.woowacourse.caffeine.application.service.PaymentService;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,9 +29,9 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @PostMapping("/{orderId}/kakaopay")
-    public ResponseEntity kakaoPayStart(@PathVariable final Long orderId) {
-        return new ResponseEntity<>(kakaoPayService.ready(orderId), HttpStatus.FOUND);
+    @PostMapping("/kakaopay")
+    public ResponseEntity kakaoPayStart(@RequestBody final KakaoPayReadyRequest request) {
+        return new ResponseEntity<>(kakaoPayService.ready(request), HttpStatus.FOUND);
     }
 
     @GetMapping("/{orderId}/kakaopay/success")

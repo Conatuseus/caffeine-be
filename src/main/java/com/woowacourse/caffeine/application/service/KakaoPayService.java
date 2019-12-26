@@ -2,9 +2,11 @@ package com.woowacourse.caffeine.application.service;
 
 import com.woowacourse.caffeine.application.dto.PaymentSaveRequest;
 import com.woowacourse.caffeine.application.dto.kakaopay.KakaoPayApprovalVO;
+import com.woowacourse.caffeine.application.dto.kakaopay.KakaoPayReadyRequest;
 import com.woowacourse.caffeine.application.dto.kakaopay.KakaoPayReadyVO;
 import com.woowacourse.caffeine.domain.Order;
 import com.woowacourse.caffeine.domain.OrderItem;
+import com.woowacourse.caffeine.domain.exception.InvalidKakaoPayException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -29,36 +31,33 @@ public class KakaoPayService {
     private final OrderItemInternalService orderItemInternalService;
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
+    private Order order;
+    private List<OrderItem> orderItems;
+    private int totalAmount;
 
     public KakaoPayService(final OrderInternalService orderInternalService, final OrderItemInternalService orderItemInternalService) {
         this.orderInternalService = orderInternalService;
         this.orderItemInternalService = orderItemInternalService;
     }
 
-    public String ready(final Long orderId) {
-        final Order order = orderInternalService.findById(orderId);
-        final List<OrderItem> orderItems = orderItemInternalService.findAllByOrder(order);
-        final int totalAmount = orderItems.stream().mapToInt(OrderItem::getPrice)
+    public String ready(final KakaoPayReadyRequest request) {
+        final long orderId = request.getOrderId();
+        this.order = orderInternalService.findById(orderId);
+        this.orderItems = orderItemInternalService.findAllByOrder(order);
+        this.totalAmount = orderItems.stream().mapToInt(OrderItem::getPrice)
             .sum();
 
         RestTemplate restTemplate = new RestTemplate();
 
-        // 서버로 요청할 Header
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK " + "admin Key");
-        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
-        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
+        HttpHeaders headers = getKakaoPayRequestHeaders();
 
-        // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("cid", "TC0ONETIME");
         params.add("partner_order_id", String.valueOf(orderId));
         params.add("partner_user_id", String.valueOf(order.getCustomerId()));
         params.add("item_name", "커피");
-//        params.add("quantity", String.valueOf(orderItems.size()));
-//        params.add("total_amount", String.valueOf(totalAmount));
-        params.add("quantity", "1");
-        params.add("total_amount", "1000");
+        params.add("quantity", String.valueOf(orderItems.size()));
+        params.add("total_amount", String.valueOf(totalAmount));
         params.add("tax_free_amount", "0");
         params.add("approval_url", PAYMENT_BASE_URL + orderId + "/kakaopay/success");
         params.add("cancel_url", PAYMENT_BASE_URL);
@@ -71,46 +70,38 @@ public class KakaoPayService {
 
             return Objects.requireNonNull(kakaoPayReadyVO).getNext_redirect_pc_url();
         } catch (RestClientException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new InvalidKakaoPayException();
         }
-        return "/pay";
     }
 
-
     public PaymentSaveRequest success(final Long orderId, final String pgToken) {
-        final Order order = orderInternalService.findById(orderId);
-        final List<OrderItem> orderItems = orderItemInternalService.findAllByOrder(order);
-        final int totalAmount = orderItems.stream().mapToInt(OrderItem::getPrice)
-            .sum();
         RestTemplate restTemplate = new RestTemplate();
 
-        // 서버로 요청할 Header
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK " + "admin Key");
-        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
-        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
+        HttpHeaders headers = getKakaoPayRequestHeaders();
 
-        // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("cid", "TC0ONETIME");
         params.add("tid", kakaoPayReadyVO.getTid());
         params.add("partner_order_id", String.valueOf(orderId));
         params.add("partner_user_id", order.getCustomerId());
         params.add("pg_token", pgToken);
-//        params.add("total_amount", String.valueOf(totalAmount));
-        params.add("total_amount", "1000");
+        params.add("total_amount", String.valueOf(totalAmount));
 
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<>(params, headers);
 
         try {
             kakaoPayApprovalVO = restTemplate.postForObject(URI.create(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
-            return kakaoPayApprovalVO.convertToPaymentSaveRequestDto();
+            return Objects.requireNonNull(kakaoPayApprovalVO).convertToPaymentSaveRequestDto();
         } catch (RestClientException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new InvalidKakaoPayException();
         }
+    }
 
-        return null;
+    private HttpHeaders getKakaoPayRequestHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "KakaoAK " + "admin Key");
+        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
+        return headers;
     }
 }
