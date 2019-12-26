@@ -26,7 +26,7 @@ import java.util.Objects;
 public class KakaoPayService {
 
     private static final String HOST = "https://kapi.kakao.com";
-    private static final String PAYMENT_BASE_URL = "http://localhost:8080/v1/payment/";
+    private static final String PAYMENT_BASE_URL = "https://www.caffe-ine.me/v1/payment/";
     private final OrderInternalService orderInternalService;
     private final OrderItemInternalService orderItemInternalService;
     private KakaoPayReadyVO kakaoPayReadyVO;
