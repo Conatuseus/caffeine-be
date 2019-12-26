@@ -112,7 +112,7 @@ public class OrderControllerTest {
     void find_by_status() {
         final long shopId = 102L;
         assertThat(findOrdersByStatus(shopId, "pending")).hasSize(3);
-        assertThat(findOrdersByStatus(shopId, "in_progress")).hasSize(3);
+        assertThat(findOrdersByStatus(shopId, "in_progress")).hasSize(4);
         assertThat(findOrdersByStatus(shopId, "finished")).hasSize(2);
     }
 

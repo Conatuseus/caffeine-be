@@ -24,4 +24,8 @@ public class OrderItemInternalService {
     public List<MenuItem> findMenusByOrder(final Order order) {
         return orderItemRepository.findAllMenuItemByOrder(order);
     }
+
+    public List<OrderItem> findAllByOrder(final Order order) {
+        return orderItemRepository.findAllByOrder(order);
+    }
 }

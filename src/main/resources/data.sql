@@ -56,3 +56,6 @@ INSERT INTO menu_item(id, name, name_in_english, description, price, img_url, ca
 --
 INSERT INTO menu_item(id, name, name_in_english, description, price, img_url, category, shop_id) VALUES(501,'프리미엄 바나나','Preminum Banana','짱 맛있어용',1500,'https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_banana.jpeg?raw=true','food',114);
 -- --
+
+
+INSERT INTO orders(id, order_status, shop_id, customer_id) VALUES(1001, 'IN_PROGRESS', 110, 'conas');

@@ -85,6 +85,11 @@
             shop_id="102"
     />
 
+    <orders id="9"
+            order_status="IN_PROGRESS"
+            shop_id="102"
+    />
+
 
     <order_item id="1"
                 order_id="1"
@@ -116,6 +121,10 @@
     />
     <order_item id="8"
                 order_id="2"
+                menu_item_id="1"
+    />
+    <order_item id="9"
+                order_id="9"
                 menu_item_id="1"
     />
 </dataset>

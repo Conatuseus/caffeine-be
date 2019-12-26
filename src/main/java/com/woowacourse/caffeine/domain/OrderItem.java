@@ -48,4 +48,8 @@ public class OrderItem {
     public MenuItem getMenuItem() {
         return menuItem;
     }
+
+    public int getPrice() {
+        return menuItem.getPrice();
+    }
 }
