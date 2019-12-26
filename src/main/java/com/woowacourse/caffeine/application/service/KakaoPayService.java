@@ -30,9 +30,7 @@ public class KakaoPayService {
     private final OrderInternalService orderInternalService;
     private final OrderItemInternalService orderItemInternalService;
     private KakaoPayReadyVO kakaoPayReadyVO;
-    private KakaoPayApprovalVO kakaoPayApprovalVO;
     private Order order;
-    private List<OrderItem> orderItems;
     private int totalAmount;
 
     public KakaoPayService(final OrderInternalService orderInternalService, final OrderItemInternalService orderItemInternalService) {
@@ -43,7 +41,7 @@ public class KakaoPayService {
     public String ready(final KakaoPayReadyRequest request) {
         final long orderId = request.getOrderId();
         this.order = orderInternalService.findById(orderId);
-        this.orderItems = orderItemInternalService.findAllByOrder(order);
+        final List<OrderItem> orderItems = orderItemInternalService.findAllByOrder(order);
         this.totalAmount = orderItems.stream().mapToInt(OrderItem::getPrice)
             .sum();
 
@@ -90,7 +88,7 @@ public class KakaoPayService {
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<>(params, headers);
 
         try {
-            kakaoPayApprovalVO = restTemplate.postForObject(URI.create(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
+            final KakaoPayApprovalVO kakaoPayApprovalVO = restTemplate.postForObject(URI.create(HOST + "/v1/payment/approve"), body, KakaoPayApprovalVO.class);
             return Objects.requireNonNull(kakaoPayApprovalVO).convertToPaymentSaveRequestDto();
         } catch (RestClientException e) {
             throw new InvalidKakaoPayException();
